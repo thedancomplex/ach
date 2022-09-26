@@ -9,7 +9,8 @@ AM_DISTCHECK_CONFIGURE_FLAGS=--enable-dkms --disable-dkms-build --disable-kbuild
 
 # dist_bin_SCRIPTS = achpipe achlog
 
-dist_noinst_SCRIPTS = achtooltest src/run-benchmarks test-achcop
+dist_noinst_SCRIPTS = achtooltest test-achcop
+#dist_noinst_SCRIPTS = achtooltest src/run-benchmarks test-achcop
 
 
 AM_CPPFLAGS = -I$(top_srcdir)/include
@@ -137,15 +138,15 @@ bin_PROGRAMS += ace_server
 BUILT_TAO = .idlgen.stamp
 
 
-.idlgen.stamp: benchmark/src/corba/ipcbench.idl
-	LD_LIBRARY_PATH=$(LD_LIBRARY_PATH):$(ACE_ROOT)/lib \
-		$(ACE_ROOT)/TAO/TAO_IDL/tao_idl $<
-	touch $@
+#.idlgen.stamp: benchmark/src/corba/ipcbench.idl
+#	LD_LIBRARY_PATH=$(LD_LIBRARY_PATH):$(ACE_ROOT)/lib \
+#		$(ACE_ROOT)/TAO/TAO_IDL/tao_idl $<
+#	touch $@
 
-ipcbenchS.cpp: .idlgen.stamp
-ipcbenchC.cpp: .idlgen.stamp
-ipcbenchS.h: .idlgen.stamp
-ipcbenchC.h: .idlgen.stamp
+#ipcbenchS.cpp: .idlgen.stamp
+#ipcbenchC.cpp: .idlgen.stamp
+#ipcbenchS.h: .idlgen.stamp
+#ipcbenchC.h: .idlgen.stamp
 
 #ace_server_SOURCES = benchmark/src/corba/server.cpp
 #nodist_ace_server_SOURCES = ipcbenchS.cpp ipcbenchC.cpp
