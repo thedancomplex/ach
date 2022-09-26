@@ -30,9 +30,10 @@ noinst_HEADERS = \
 	include/ach/private_posix.h \
 	include/libach_private.h \
 	include/achtest.h \
-	include/libach/vtab.h \
-	benchmark/include/ipcbench.h \
-	benchmark/include/util.h
+	include/libach/vtab.h 
+#\
+#	benchmark/include/ipcbench.h \
+#	benchmark/include/util.h
 
 
 ###############
@@ -95,36 +96,36 @@ achd_LDADD = libach.la libachutil.la
 # achbench_SOURCES = src/ach-bench.c
 # achbench_LDADD = libach.la libachutil.la
 
-bin_PROGRAMS += ipcbench
-nodist_ipcbench_SOURCES =
-ipcbench_SOURCES = benchmark/src/ipcbench.c \
-                   benchmark/src/pipe.c \
-                   benchmark/src/mq.c \
-                   benchmark/src/tcp.c \
-                   benchmark/src/unix.c \
-                   benchmark/src/udp.c \
-                   benchmark/src/localdgram.c \
-                   benchmark/src/udp_multicast.c
-ipcbench_SOURCES += benchmark/src/ach.c
-AM_CPPFLAGS += -I$(top_srcdir)/benchmark/include
+#bin_PROGRAMS += ipcbench
+#nodist_ipcbench_SOURCES =
+#ipcbench_SOURCES = benchmark/src/ipcbench.c \
+#                   benchmark/src/pipe.c \
+#                   benchmark/src/mq.c \
+#                   benchmark/src/tcp.c \
+#                   benchmark/src/unix.c \
+#                   benchmark/src/udp.c \
+#                   benchmark/src/localdgram.c \
+#                   benchmark/src/udp_multicast.c
+#ipcbench_SOURCES += benchmark/src/ach.c
+#AM_CPPFLAGS += -I$(top_srcdir)/benchmark/include
 
 ## LCM ##
 if HAVE_LCM
 
 bin_PROGRAMS += lcm_buffer
 
-lcm_buffer_SOURCES = benchmark/src/lcm_buffer.c
-nodist_lcm_buffer_SOURCES = ipcbench_lcm_timestamp_t.c
+#lcm_buffer_SOURCES = benchmark/src/lcm_buffer.c
+#nodist_lcm_buffer_SOURCES = ipcbench_lcm_timestamp_t.c
 lcm_buffer_LDADD = -llcm
 
-ipcbench_SOURCES += benchmark/src/lcm.c
-nodist_ipcbench_SOURCES += ipcbench_lcm_timestamp_t.c
+#ipcbench_SOURCES += benchmark/src/lcm.c
+#nodist_ipcbench_SOURCES += ipcbench_lcm_timestamp_t.c
 LDADD_LCM = -llcm
-BUILT_LCM = ipcbench_lcm_timestamp_t.c ipcbench_lcm_timestamp_t.h
+#BUILT_LCM = ipcbench_lcm_timestamp_t.c ipcbench_lcm_timestamp_t.h
 
-ipcbench_lcm_timestamp_t.h: ipcbench_lcm_timestamp_t.c
+#ipcbench_lcm_timestamp_t.h: ipcbench_lcm_timestamp_t.c
 
-ipcbench_lcm_timestamp_t.c: benchmark/src/lcm_msg.lcm
+#ipcbench_lcm_timestamp_t.c: benchmark/src/lcm_msg.lcm
 	lcm-gen -c $<
 
 endif
@@ -146,20 +147,20 @@ ipcbenchC.cpp: .idlgen.stamp
 ipcbenchS.h: .idlgen.stamp
 ipcbenchC.h: .idlgen.stamp
 
-ace_server_SOURCES = benchmark/src/corba/server.cpp
-nodist_ace_server_SOURCES = ipcbenchS.cpp ipcbenchC.cpp
-ace_server_LDADD =  \
-	-lACE -lTAO \
-	-lTAO_AnyTypeCode \
-	-lTAO_TypeCodeFactory \
-	-lTAO_IDL_BE \
-	-lTAO_IDL_FE \
-	-lTAO_PortableServer \
-	-lTAO_IFR_Client
+#ace_server_SOURCES = benchmark/src/corba/server.cpp
+#nodist_ace_server_SOURCES = ipcbenchS.cpp ipcbenchC.cpp
+#ace_server_LDADD =  \
+#	-lACE -lTAO \
+##	-lTAO_AnyTypeCode \
+#	-lTAO_TypeCodeFactory \
+#	-lTAO_IDL_BE \
+#	-lTAO_IDL_FE \
+#	-lTAO_PortableServer \
+#	-lTAO_IFR_Client
 
 
-ipcbench_SOURCES += benchmark/src/corba/corba.cpp benchmark/src/corba/cos.cpp
-nodist_ipcbench_SOURCES += ipcbenchC.cpp ipcbenchS.cpp
+#ipcbench_SOURCES += benchmark/src/corba/corba.cpp benchmark/src/corba/cos.cpp
+#nodist_ipcbench_SOURCES += ipcbenchC.cpp ipcbenchS.cpp
 LDADD_TAO = \
 	-lACE -lTAO \
 	-lTAO_AnyTypeCode \
@@ -184,7 +185,7 @@ LDADD_TAO = \
 endif
 
 # Link Libraries
-ipcbench_LDADD = $(LDADD_LCM) $(LDADD_TAO)  libach.la
+#ipcbench_LDADD = $(LDADD_LCM) $(LDADD_TAO)  libach.la
 
 BUILT_SOURCES += $(BUILT_LCM) $(BUILT_TAO)
 

@@ -1,7 +1,0 @@
-package ipcbench_lcm;
-
-struct timestamp_t
-{
-    int64_t  secs;
-    int32_t  nsecs;
-}
